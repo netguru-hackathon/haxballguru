@@ -4,6 +4,9 @@
 
 %h3 Current players:
 
+%ul.players
+  %li= "#{user} (you)"
+
 :javascript
   var game = $(".game_name").data("name");
   socket.emit('lobby.request.new_game', game);

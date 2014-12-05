@@ -1,6 +1,6 @@
 %h1 Lobby
 
-%h3 Available games
+%h3 Available games (click to join!)
 
 %ul.games
 
@@ -9,8 +9,16 @@
   = f.submit 'Create new game', class: 'btn btn-success'
 
 :javascript
+  function game(game_name) {
+    return $("ul.games").find('li[data-name='+ game_name +']');
+  }
+
   socket.on('lobby.response.new_game', function(game_name) {
-    $("<li>").attr('data-name', game_name).html(game_name).appendTo($(".games"));
+    if (game(game_name).length == 0) {
+      $("<li>").attr('data-name', game_name).append($(
+        $("<a>").attr('href', '/games/' + game_name).html(game_name)
+      )).appendTo($(".games"));
+    }
   });
 
   socket.on('lobby.response.host_disconnected', function(game_name) {
