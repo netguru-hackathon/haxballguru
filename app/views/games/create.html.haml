@@ -1,0 +1,13 @@
+%h1.game_name{ data: { name: user }}= "Welcome, #{user}"
+
+%h3 Waiting for players to join...
+
+%h3 Current players:
+
+:javascript
+  var game = $(".game_name").data("name");
+  socket.emit('lobby.request.new_game', game);
+
+  window.onbeforeunload = function() {
+    socket.emit('lobby.request.host_disconnected', game);
+  };

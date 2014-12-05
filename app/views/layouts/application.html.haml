@@ -16,6 +16,10 @@
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
+    = javascript_include_tag "http://localhost:4001/socket.io/socket.io.js"
+
+    :javascript
+      var socket = io.connect('http://localhost:4001');
 
 
   %body

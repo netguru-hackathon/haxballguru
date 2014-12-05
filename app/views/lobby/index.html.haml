@@ -2,18 +2,17 @@
 
 %h3 Available games
 
-%ul
-  %li
-    %span Game 1
-    %button.btn.btn-info Join
+%ul.games
 
-  %li
-    %span Game 2
-    %button.btn.btn-info Join
+= form_for :games, url: games_path, method: :post do |f|
+  = f.text_field :nick, placeholder: "give us your name", :required => true
+  = f.submit 'Create new game', class: 'btn btn-success'
 
-  %li
-    %span Game 3
-    %button.btn.btn-info Join
+:javascript
+  socket.on('lobby.response.new_game', function(game_name) {
+    $("<li>").attr('data-name', game_name).html(game_name).appendTo($(".games"));
+  });
 
-
-= link_to 'Create new game', games_path, class: 'btn btn-success', method: :post
+  socket.on('lobby.response.host_disconnected', function(game_name) {
+    $("ul.games").find('li[data-name='+ game_name +']').remove();
+  });
