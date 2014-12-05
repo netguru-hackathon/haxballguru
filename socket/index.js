@@ -1,6 +1,7 @@
 var io = require('socket.io').listen(4001);
 
 var sockets = {};
+var hosts   = {};
 
 io.sockets.on('connection', function(socket) {
   sockets[socket.id] = socket;
@@ -16,6 +17,7 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('disconnect', function() {
     delete sockets[socket.id];
+    delete hosts[socket.id];
   });
 
   socket.on('lobby.request.new_game', function(game_name) {
@@ -30,8 +32,12 @@ io.sockets.on('connection', function(socket) {
     broadcast('lobby.response.discover_available_games');
   });
 
-
-  socket.on('ping', function() {
-    socket.emit('pong', 'pong');
+  socket.on('game.register_host', function() {
+    hosts[socket.id] = socket;
   });
+
+  socket.on('game.host_left', function() {
+    delete hosts[socket.id];
+  });
+
 });
