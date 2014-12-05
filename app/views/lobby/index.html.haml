@@ -1,0 +1,19 @@
+%h1 Lobby
+
+%h3 Available games
+
+%ul
+  %li
+    %span Game 1
+    %button.btn.btn-info Join
+
+  %li
+    %span Game 2
+    %button.btn.btn-info Join
+
+  %li
+    %span Game 3
+    %button.btn.btn-info Join
+
+
+= link_to 'Create new game', games_path, class: 'btn btn-success', method: :post
