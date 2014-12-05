@@ -2,5 +2,7 @@
 #= require jquery_ujs
 #= require twitter/bootstrap
 #= require turbolinks
-#= require ball
+#= require iioEngine
+#= require iioDebugger
+#= require ball2
 #= require_tree .
