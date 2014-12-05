@@ -75,7 +75,7 @@ class Player
     @render()
 
   render: ->
-    @node = $('<div/>', class: 'player')
+    @node = $('<div/>', class: 'player red')
     @pitch.node.append @node
 
   updatePosition: ->
@@ -119,6 +119,3 @@ class Game
 
 $ ->
   game = new Game()
-
-
-

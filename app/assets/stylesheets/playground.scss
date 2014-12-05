@@ -39,6 +39,7 @@
   position: absolute;
   border-radius: 25px;
   border: 2px solid white;
+  z-index: 30;
 
   &.red {
     top: 47%;
@@ -51,6 +52,17 @@
     left: 52%;
     background: blue;
   }
+}
+
+.ball {
+  width: 25px;
+  height: 25px;
+  display: block;
+  background: gray;
+  top: 50%;
+  left: 50%;
+  border-radius: 15px;
+  border: 2px solid greenyellow;
 }
 
 .static-pitch, .dynamic-pitch {
