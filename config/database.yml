@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: haxballguru_development
+
+test:
+  <<: *default
+  database: haxballguru_test
+
+production:
+  <<: *default
+  database: haxballguru_production
+  username: haxballguru
+  password: <%= ENV['HAXBALLGURU_DATABASE_PASSWORD'] %>
