@@ -11,3 +11,7 @@
   window.onbeforeunload = function() {
     socket.emit('lobby.request.host_disconnected', game);
   };
+
+  socket.on('lobby.response.discover_available_games', function() {
+    socket.emit('lobby.request.new_game', game);
+  });

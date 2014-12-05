@@ -16,3 +16,5 @@
   socket.on('lobby.response.host_disconnected', function(game_name) {
     $("ul.games").find('li[data-name='+ game_name +']').remove();
   });
+
+  socket.emit('lobby.request.discover_available_games');
