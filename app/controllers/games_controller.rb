@@ -4,4 +4,8 @@ class GamesController < ApplicationController
 
   def index
   end
+
+  def game
+    @host = params[:name]
+  end
 end

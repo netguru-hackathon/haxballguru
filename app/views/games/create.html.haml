@@ -10,6 +10,7 @@
 :javascript
   var game = $(".game_name").data("name");
   socket.emit('lobby.request.new_game', game);
+  socket.emit('game.register_host', game);
 
   window.onbeforeunload = function() {
     socket.emit('lobby.request.host_disconnected', game);
@@ -17,4 +18,12 @@
 
   socket.on('lobby.response.discover_available_games', function() {
     socket.emit('lobby.request.new_game', game);
+  });
+
+  socket.on('game.player_joined', function(player_name) {
+    $("<li>").html(player_name).appendTo($('ul.players'));
+  });
+
+  socket.on('game.response.player_left', function(player_name) {
+    $("ul.players").find('li:contains('+ player_name +')').remove();
   });

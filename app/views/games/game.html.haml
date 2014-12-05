@@ -1,0 +1,20 @@
+:javascript
+  var host = '#{@host}';
+
+  socket.emit('game.request.join', host);
+
+  socket.on('game.response.game_not_found', function() {
+    alert('game is not found');
+  });
+
+  socket.on('game.response.game_is_full', function() {
+    alert('sorry, this game is already full');
+  });
+
+  socket.on('game.response.join', function() {
+    socket.emit('game.request.joined', { name: host, my_name: player_name});
+  });
+
+  window.onbeforeunload = function() {
+    socket.emit('game.player_left', { host: host, name: player_name});
+  };
