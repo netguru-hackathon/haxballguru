@@ -4,9 +4,7 @@
 
 %ul.games
 
-= form_for :games, url: games_path, method: :post do |f|
-  = f.text_field :nick, placeholder: "give us your name", :required => true
-  = f.submit 'Create new game', class: 'btn btn-success'
+= link_to "Create new game", games_path, method: :post, class: 'btn btn-success'
 
 :javascript
   function game(game_name) {

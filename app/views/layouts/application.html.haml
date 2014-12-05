@@ -20,7 +20,7 @@
 
     :javascript
       var socket = io.connect('http://localhost:4001');
-
+      var player_name = '#{session[:user]}';
 
   %body
     %heaer
@@ -28,5 +28,13 @@
         .container-fluid
           .navbar-header
             %a.navbar-brand{ href: '#' } HexGuru
+
+          .collapse.navbar-collapse
+            %ul.nav.navbar-nav
+              - if user.present?
+                %li.active
+                  %a{href: "#"}=user
+                %li
+                  = link_to "Change name", "/name"
     = yield
 

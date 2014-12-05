@@ -1,0 +1,8 @@
+.jumbotron
+  %h1 Whats your name?
+
+  %p
+
+  = form_for :name, url: '/name', method: :post do |f|
+    = f.text_field :name, required: true
+    = f.submit "Play!", class: "btn btn-success"
